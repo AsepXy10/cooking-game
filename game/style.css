@@ -1,0 +1,38 @@
+/* Warung Kilat — page chrome around the canvas. The game itself draws
+   everything inside the canvas; this only centers it on a dark page. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #241610;
+  color: #fff8e8;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage {
+  width: min(1280px, 100vw);
+  padding: 12px;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 4px solid #6b4423;
+  border-radius: 12px;
+  background: #f6e3bd;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.hint {
+  margin: 10px 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e8c9a0;
+  text-align: center;
+}
