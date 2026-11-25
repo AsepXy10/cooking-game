@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Warung Kilat — screenshot harness</title>
+  <style>
+    body { margin: 0; background: #241610; color: #fff8e8; font: 16px system-ui, sans-serif; }
+    #status { padding: 10px 14px; }
+    iframe { display: block; width: 1280px; height: 720px; border: 0; background: #f6e3bd; }
+    button { margin: 0 0 12px 14px; padding: 8px 16px; font-size: 15px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="status">Loading shot…</div>
+  <iframe id="frame" title="Warung Kilat"></iframe>
+  <br>
+  <button id="again">Download this shot again</button>
+  <script>
+    // Screenshot harness for Warung Kilat. Open with ?shot=kitchen|serve|rush|combo.
+    // It loads the game in a 1280x720 iframe, waits for the game's own
+    // window.__shotReady flag, then exports the game canvas to a JPEG (q80)
+    // and downloads it. Same origin, so the iframe canvas is reachable.
+    const params = new URLSearchParams(window.location.search);
+    const shot = params.get('shot') || 'kitchen';
+    const status = document.getElementById('status');
+    const frame = document.getElementById('frame');
+    frame.src = 'game/index.html?shot=' + encodeURIComponent(shot);
+
+    function downloadShot() {
+      const gameDoc = frame.contentDocument;
+      const canvas = gameDoc && gameDoc.getElementById('game');
+      if (!canvas) {
+        status.textContent = 'Game canvas not found yet.';
+        return;
+      }
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          status.textContent = 'Export failed (empty blob).';
+          return;
+        }
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = shot + '.jpg';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+        status.textContent = 'Downloaded ' + shot + '.jpg (' + Math.round(blob.size / 1024) + ' KiB). Verify the file size matches what the browser saved.';
+      }, 'image/jpeg', 0.8);
+    }
+
+    document.getElementById('again').addEventListener('click', downloadShot);
+
+    const timer = setInterval(() => {
+      let ready = false;
+      try { ready = !!frame.contentWindow.__shotReady; } catch (e) { /* not ready */ }
+      if (ready) {
+        clearInterval(timer);
+        status.textContent = 'Shot "' + shot + '" ready — downloading…';
+        setTimeout(downloadShot, 300);
+      }
+    }, 100);
+    setTimeout(() => {
+      if (!frame.contentWindow || !frame.contentWindow.__shotReady) {
+        status.textContent = 'Still waiting for __shotReady — if this stays, the game did not load.';
+      }
+    }, 15000);
+  </script>
+</body>
+</html>
