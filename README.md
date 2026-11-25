@@ -1,8 +1,8 @@
 # Warung Kilat — Masak Cepat, Antar Tepat!
 
-![make.fun](https://make.fun/badge/best-cooking-game-20261125-0137.svg)
-![rank](https://make.fun/badge/best-cooking-game-20261125-0137/asepxy10/cooking-game/rank.svg)
-![reward](https://make.fun/badge/best-cooking-game-20261125-0137/reward.svg)
+[![make.fun · best-cooking-game-20261125-0137](https://make.fun/badge/best-cooking-game-20261125-0137.svg)](https://make.fun/bounty/best-cooking-game-20261125-0137?utm_source=github&utm_medium=readme&utm_campaign=best-cooking-game-20261125-0137)
+[![rank](https://make.fun/badge/best-cooking-game-20261125-0137/AsepXy10/cooking-game/rank.svg)](https://make.fun/bounty/best-cooking-game-20261125-0137/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-cooking-game-20261125-0137)
+[![reward](https://make.fun/badge/best-cooking-game-20261125-0137/AsepXy10/cooking-game/reward.svg)](https://make.fun/bounty/best-cooking-game-20261125-0137?utm_source=github&utm_medium=readme&utm_campaign=best-cooking-game-20261125-0137)
 
 An original cooking game built for the [best cooking game bounty](https://make.fun/bounty/best-cooking-game-20261125-0137). You run the busiest nasi goreng stall in town: take orders from the board, fry ingredients in the wok, mind the burn, plate the dish, and serve it before the customer's patience runs out.
 
